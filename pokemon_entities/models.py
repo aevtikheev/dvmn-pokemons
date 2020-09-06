@@ -9,7 +9,7 @@ class Pokemon(models.Model):
     description = models.TextField('Описание', default='', blank=True)
     previous_evolution = models.ForeignKey(
         "self",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name='next_evolution',
@@ -23,7 +23,7 @@ class Pokemon(models.Model):
 class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(
         Pokemon,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name='entities',
         verbose_name='Покемон'
     )
